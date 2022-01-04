@@ -1,0 +1,1 @@
+Tutaj jest footer, w którym jeszcze nic nie ma
