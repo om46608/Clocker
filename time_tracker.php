@@ -12,7 +12,7 @@ include_once __DIR__ .'/header.php';
                 <input class="tracker__task__name__input" type="text" placeholder="Nazwa taska">
             </div>
             <div class="tracker__task__control">
-                <button onclick="startStopTask()">START / STOP</button>
+                <button id = "start-stop-btn" onclick="startStopTask()">START / STOP</button>
             </div>
             <div class="tracker__task__time">
                 00:00

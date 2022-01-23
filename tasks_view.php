@@ -20,6 +20,9 @@ include_once __DIR__ . '/helpers/validate_inputs.php';
         <label>Nazwa projektu
             <input type="text" minlength="3" maxlength="255" placeholder="Tu wpisz nazwę..." name="projectName">
         </label>
+        <label>Nazwa klienta
+            <input type="text" minlength="3" maxlength="255" placeholder="Tu wpisz nazwę..." name="clientName">
+        </label>
         <label>Data rozpoczęcia
             <input type="date" name="startDate">
         </label>
@@ -33,20 +36,22 @@ include_once __DIR__ . '/helpers/validate_inputs.php';
         <li class="filter">
             <input type="text" minlength="3" class="task-filter" placeholder="Filtruj po nazwie projektu..." id="filter">
         </li>
+
         <ul id="tasks-list">
         <?php
             foreach ($_SESSION['tasks'] as $task)
             {
             echo '<li id="' . $task->task_id . '">';
             echo '<input type="text" minlength="3" maxlength="255" class="text-input" placeholder="Nazwa projektu" value="' . $task->task_name . '" id="name" disabled>';
-            echo '<input type="time" class="text-input" value="' . $task->duration . '" disabled>';
-            echo '<button>Start/Stop</button>';
-            echo '<input type="date" class="text-input" value="' . substr($task->end_time, 0, 10) . '" disabled>';
-            echo '<input type="text" minlength="3" maxlength="7" class="text-input" placeholder="Nazwa projektu" value="' . $task->project_name . '" disabled>';
+            echo '<input type="text" class="text-input" value="' . $task->duration . '" disabled>';
+            echo '<button id="start-stop-button">Start/Stop</button>';
+            echo '<input type="text" class="text-input" value="' . substr($task->end_time, 0, 10) . '" disabled>';
+            echo '<input type="text" minlength="3" maxlength="255" class="text-input" placeholder="Nazwa projektu" value="' . $task->project_name . '" disabled>';
+            echo '<input type="text" minlength="3" maxlength="255" class="text-input" placeholder="Nazwa klienta" value="' . $task->client_name . '" disabled>';
             echo '<form class="task-remover" method="post" action="controllers/Users.php">';
             echo '<input type="hidden" name="type" value="removeTask">';
             echo '<input type="hidden" name="taskId" value="' . $task->task_id .'">';
-            echo '<button type="submit">Usuń</button>';
+            echo '<button id="start-stop-button" type="submit">Usuń</button>';
             echo '</form>';
             echo '</li>';
             }

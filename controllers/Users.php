@@ -433,13 +433,14 @@ class Users
     }
 
     public function addTask()
-    {
+    {echo '<input type="text" minlength="3" maxlength="7" class="text-input" placeholder="Nazwa projektu" value="' . $task->project_name . '" disabled>';
         $task_fields = [
-            $_POST['taskName'],
-            $_POST['projectName'],
-            $_POST['startDate'],
-            $_POST['endDate'],
-            $_SESSION['usersId']
+            $_POST['taskName'], //0
+            $_POST['projectName'], //1
+            $_POST['clientName'], //2
+            $_POST['startDate'], //3
+            $_POST['endDate'], //4
+            $_SESSION['usersId'] //5
         ];
         foreach ($task_fields as $key => $item) {
             if (empty($task_fields[$key])) {

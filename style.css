@@ -174,12 +174,32 @@ form.forms input {
     margin: 10px 0;
     padding: 10px 10px 10px 5px;
 }
+.text-input{
+    height: 3rem;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    border-radius: 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
 
 form.forms button {
     margin-top: 10px;
     padding: 10px 20px;
     cursor: pointer;
+}
 
+#start-stop-button{
+    padding-left:5px;
+    padding-right:5px;
+    margin-left:2px;
+    margin-right:2px;
+    background-color: rgba(61, 61, 61, 0.55);
+    border-radius: 10px;
+    color: #d7d7d7;
+    height: 3rem;
+    border: none;
+    cursor: pointer;
 }
 
 #footer {
@@ -330,8 +350,71 @@ label {
 input{
     border-radius: 5px;
 }
+#start-stop-btn{
+    background-color: rgba(141, 141, 141, 0.62);
+    color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    cursor: pointer;
+    font-weight: 700;
+    margin: 0.5rem;
+}
+#start-stop-btn:hover{
+    background-color: rgba(141, 141, 141, 0.62);
+    color: white;
+    border: 1px solid black;
+    box-shadow: 0 0 10px #c7a500;
+    border-radius: 5px;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    cursor: pointer;
+    font-weight: 700;
+    margin: 0.5rem;
+    transition: 0.2s;
+}
+.tracker-wrapper .tracker__task__name input {
+    background-color: rgba(73, 73, 73, 0.4);
+    color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 2rem;
+    height: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 50ch;
+}
+#filter.task-filter{
+    background-color: rgba(61, 61, 61, 0.8);
+    color: #c5ad44;
+    border: 2px solid black;
+    box-shadow: 0 0 5px white;
+    height: 2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding-left: 0.7rem;
+}
 
 /* TODO Koniecznie zrobić responsywny time tracker*/
+@media only screen and (max-width: 1600px){
+    h1.menu{
+        font-size: 10vh;
+    }
+    h3.menu{
+        font-size: 3vh;
+    }
+    button.bar{
+        font-size: 0.8rem;
+    }
+    .tracker-wrapper .tracker__task__name input {
+        width: 90%;
+        font-size: 1.5rem;
+    }
+    button.bar{
+        padding: 0.5rem;
+    }
+}
 
 @media only screen and (max-width: 1000px){
     h1.menu{
@@ -343,7 +426,16 @@ input{
     button.bar{
         font-size: 0.8rem;
     }
-
+    .tracker-wrapper .tracker__task__name input {
+        width: 90%;
+    }
+    form.forms{
+        width: 80%;
+        zoom: 150%;
+    }
+    .header-div{
+        zoom: 150%;
+    }
 }
 @media only screen and (max-width: 900px){
     button.bar{
@@ -355,6 +447,12 @@ input{
         font-size: 0.7rem;
         margin-left: 0;
         margin-right: 0;
+    }
+    .tracker-wrapper .tracker__task__name input {
+        width: 90%;
+    }
+    .header-div{
+        zoom: 120%;
     }
 }
 @media only screen and (max-width:640px){
@@ -369,6 +467,9 @@ input{
         padding-left: 0.2rem;
         padding-right: 0.2rem;
     }
+    .tracker-wrapper .tracker__task__name input {
+        width: 90%;
+    }
 }
 @media only screen and (max-width:500px){
     .header-div{
@@ -377,6 +478,18 @@ input{
     }
     button.bar{
         margin: 0 auto;
+    }
+    form{
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+    .tracker-wrapper .tracker__task{
+        display: block;
+        text-align: center;
+        padding-left: 0;
+    }
+    .tracker-wrapper .tracker__task__name input {
+        width: 90%;
     }
 }
 

@@ -3,4 +3,4 @@ define('URL_ROOT','http://localhost/mvclocker'); //to nie zadziała z obecną na
 DEFINE('host', 'localhost');
 DEFINE('dbname', 'clockerdb');
 DEFINE('dbuser', 'root');
-DEFINE('dbpass', 'root');
+DEFINE('dbpass', '');

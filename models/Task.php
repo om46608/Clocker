@@ -40,12 +40,12 @@ class Task
         $this->database->query('INSERT INTO tasks (task_name, start_time, end_time, usersId, project_name, duration, client_name) 
         VALUES (:taskName, :startTime, :endTime, :usersId, :projectName, :duration, :clientName)');
         $this->database->bind(':taskName', $task_fields[0]);
-        $this->database->bind(':startTime', $task_fields[2]);
-        $this->database->bind(':endTime', $task_fields[3]);
+        $this->database->bind(':startTime', $task_fields[3]);
+        $this->database->bind(':endTime', $task_fields[4]);
         $this->database->bind(':usersId', $_SESSION['usersId']);
         $this->database->bind(':projectName', $task_fields[1]);
         $this->database->bind(':duration', "00:00:00");
-        $this->database->bind(":clientName", "-");
+        $this->database->bind(":clientName", $task_fields[2]);
 
         if ($this->database->execute()) {
             return true;
