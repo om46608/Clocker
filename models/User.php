@@ -98,5 +98,10 @@ class User
         $this->database->execute();
         return $this->database->getOneResult();
     }
+    public function countAllUsers(){
+        $this->database->query('SELECT COUNT(usersId) FROM users');
+        $this->database->execute();
+        return $this->database->getAllResults();
+    }
 
 }
