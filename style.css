@@ -396,7 +396,7 @@ input{
     padding-left: 0.7rem;
 }
 
-/* TODO Koniecznie zrobić responsywny time tracker*/
+
 @media only screen and (max-width: 1600px){
     h1.menu{
         font-size: 10vh;
@@ -416,7 +416,30 @@ input{
     }
 }
 
-@media only screen and (max-width: 1000px){
+@media only screen and (max-width: 1150px){
+    .text-input{
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    #start-stop-button{
+        width: 100%;
+    }
+
+    .tracker__task__time__new{
+        width: 100%;
+        margin: 0 auto;
+        height: 3rem;
+    }
+    li{
+        text-align: center;
+    }
+    ul {
+    display: block;
+    }
+}
+
+@media only screen and (max-width: 921px){
     h1.menu{
         font-size: 10vh;
     }
@@ -437,7 +460,7 @@ input{
         zoom: 150%;
     }
 }
-@media only screen and (max-width: 900px){
+@media only screen and (max-width: 920px){
     button.bar{
         font-size: 0.6rem;
         margin-left: 0;

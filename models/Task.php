@@ -86,7 +86,7 @@ class Task
         }
     }
     public function getSumOfTaskTimes(){
-        $this->database->query('SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(duration))) FROM tasks;');
+        $this->database->query('SELECT (SUM(TIME_TO_SEC(duration))) FROM tasks;');
         $this->database->execute();
         return $this->database->getAllResults();
     }

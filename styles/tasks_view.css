@@ -23,8 +23,14 @@
     width: 100px;
     text-align: center;
     color: white;
+    height: 3rem;
 }
 
 .task_name_input {
     background-color: gray;
+}
+@media only screen and (max-width: 1150px){
+    .tracker__task__time__new{
+        width: 100%;
+    }
 }
