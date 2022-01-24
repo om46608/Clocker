@@ -23,7 +23,7 @@ class Task
     public function checkIfTaskExists($taskName, $projectName)
     {
         
-        $this->database->query('SELECT * FROM tasks WHERE task_name = :taskName OR project_name = :projectName');
+        $this->database->query('SELECT * FROM tasks WHERE task_name = :taskName AND project_name = :projectName');
         $this->database->bind(':taskName', $taskName);
         $this->database->bind(':projectName', $projectName);
 
