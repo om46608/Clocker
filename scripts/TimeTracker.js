@@ -22,30 +22,22 @@ function getStartingTime(id) {
 
 function countTime(id = 0) {
     var startingTime = getStartingTime(id);
-
     if (!isActive) {
         isActive = true;
-
         if(startingTime === 0) {
             startTime = Date.now();
-            console.log('jest zero')
-
             setInterval(() => {
                 if (isActive) {
                     updateDisplayTime(Date.now() - startTime, id);
                 }
             }, 1000);
-
-
         } else {
             startTime = Date.now();
-
             setInterval(() => {
                 if (isActive) {
                     updateDisplayTime(startingTime + Date.now() - startTime, id);
                 }
             }, 1000);
-
         }
     } else {
         isActive = false;
@@ -58,7 +50,6 @@ function countTime(id = 0) {
 
 
 function updateDisplayTime(time, id = 0) {
-    console.log(time);
     time = parseTimeDb(time);
     let timeEl = document.querySelectorAll('#tracker__task__time-' + id)[0];
     if (timeEl) {
