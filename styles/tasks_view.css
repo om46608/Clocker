@@ -11,8 +11,8 @@
     color: white;
 }
 
-.sorter-btn{
-    display: inline-block;
+.sorter{
+    display:inline-block;
 }
 
 .hidden{
@@ -27,4 +27,49 @@
 
 .task_name_input {
     background-color: gray;
+}
+
+.btn {
+    font-weight: 600;
+    background-color: #595959;
+    border: none;
+    color: white;
+    padding: 15px 32px 32px;
+    text-align: center;
+    font-size: 2vh;
+    height: 5vh;
+    cursor: pointer;
+    transition: 0.3s;
+    width: auto;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-radius: 20px;
+    opacity: 90%;
+    text-decoration: none;
+    margin: 0 auto 1.5rem;
+}
+
+.btn-hover:hover {
+    background-color: #f0cb00;
+    color: white;
+    box-shadow: 0 0 40px rgba(240, 203, 0, 0.59);
+}
+
+.table-head {
+    font-size: 1.5rem;
+    width:11.28rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.table-cell {
+    text-align: center;
+}
+
+.delete-btn {
+    color: white;
+    width: 11.3rem;
+    height: 3rem;
+    background-color: rgba(239, 239, 239, 0.3);
+    opacity: 90%;
 }

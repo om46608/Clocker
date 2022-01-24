@@ -353,6 +353,8 @@ class Users
             $logged = $this->user->login($user->getUsersLogin(), $user->getUsersPassword());
 
             if ($logged) {
+                $_SESSION['tasks'] = $this->task->getTasks();
+                echo $_SESSION['tasks'];
                 $this->newSession($logged);
             } else {
                 checkInputs("login", "Podano złe hasło");
@@ -434,7 +436,7 @@ class Users
     }
 
     public function addTask() {
-        echo '<input type="text" minlength="3" maxlength="7" class="text-input" placeholder="Nazwa projektu" value="' . $task->project_name . '" disabled>';
+        //echo '<input type="text" minlength="3" maxlength="7" class="text-input" placeholder="Nazwa projektu" value="' . $task->project_name . '" disabled>';
         $task_fields = [
             $_POST['taskName'], //0
             $_POST['projectName'], //1
@@ -506,6 +508,54 @@ class Users
             exit("Cos chyba poszlo nie tak");
         }
     }
+
+    public function editTask()
+    {
+        $temp = $this->task->getTask($_POST['taskId']);
+        $get_attrs = array(
+            'task_id',
+            'task_name',
+            'end_time',
+            'project_name',
+            'client_name'
+        );
+        foreach ($get_attrs as $attr)
+        {
+            $_SESSION[$attr] = $temp->$attr;
+        }
+
+        $newURL = '../index.php?action=edit_task';
+        header('Location: ' . $newURL);
+    }
+
+    public function updateTask() {
+        //echo '<input type="text" minlength="3" maxlength="7" class="text-input" placeholder="Nazwa projektu" value="' . $task->project_name . '" disabled>';
+        $task_fields = [
+            $_POST['taskId'],//0
+            $_POST['taskName'], //1
+            $_POST['projectName'], //2
+            $_POST['clientName'], //3
+            $_POST['startDate'], //4
+            $_POST['startDate'], //5
+            $_SESSION['usersId'] //6
+        ];
+        foreach ($task_fields as $key => $item) {
+            if (empty($task_fields[$key])) {
+                checkInputs("task", "Wszystkie dane muszą być wypełnione. Brakuje " . $key);
+                $newURL = '../index.php?action=tasks';
+                header('Location: ' . $newURL);
+                exit();
+            }
+        }
+        if ($this->task->updateTask($task_fields)) {
+            $_SESSION['tasks'] = $this->task->getTasks();
+            echo $_SESSION['tasks'];
+            $newURL = '../index.php?action=tasks';
+            header('Location: ' . $newURL);
+        } else {
+            exit("Cos chyba poszlo nie tak");
+        }
+    }
 }
 
 $user = new Users();
@@ -531,6 +581,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user->addTimeToTask();
     if ($_POST['type'] == 'updateTaskName')
         $user->updateTaskName();
+    if ($_POST['type'] == 'editTask')
+        $user->editTask();
+    if ($_POST['type'] == 'updateTask')
+        $user->updateTask();
 }
 
 if (isset($_SESSION['usersId'])) {

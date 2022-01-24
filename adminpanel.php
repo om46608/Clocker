@@ -1,59 +1,59 @@
 <?php
-include_once __DIR__ . '/header.php';
+    include_once __DIR__ . '/header.php';
 ?>
-
+<link rel="stylesheet" href="styles/style.css">
+<link rel="stylesheet" href="styles/tasks_view.css">
 <div class="wrapper">
-
     <h2> Panel admina </h2>
-
-    <!-- -->
-    <!--Szukanie usera po loginie -->
-    <p id="search-user-p">Szukanie usera:</p>
     <?php
-
     include_once __DIR__ . '/show_specific_user.php';
-
-
-
     if (isset($_REQUEST['userSearchInput'])) {
         require_once __DIR__ . '/models/Admin.php';
         $model = new Admin();
         $data = $model->showSpecificUser($_REQUEST['userSearchInput']); //todo dodac filtering
-        if (isset($data) && count($data)) {
-            foreach ($data as $rows) {
-                //print_r($data);
+        if($data){
+            if (isset($data) && count($data)) {
+                echo '<li id="start">';
+                echo '<input type="text" class="table-head text-input" value="ID" disabled>';
+                echo '<input type="text" class="table-head text-input" value="Login" disabled>';
+                echo '<input type="text" class="table-head text-input" value="Imię" disabled>';
+                echo '<input type="text" class="table-head text-input" value="Nazwisko" disabled>';
+                echo '<input type="text" class="table-head text-input" value="E-mail" disabled>';
+                echo '<input type="text" class="table-head text-input" value="Hasło" disabled>';
+                echo '<input type="text" class="table-head text-input" value="Ustawienia" disabled>';
+                echo '</li>';
+                foreach($data as $rows) {
+                    echo '<li id="' . $rows->usersId . '">';
+                    echo '<input type="text" class="table-cell text-input" value="' . $rows->usersId . '" disabled>';
+                    echo '<input type="text" class="table-cell text-input" value="' . $rows->usersLogin . '" disabled>';
+                    echo '<input type="text" class="table-cell text-input" value="' . $rows->usersFirstName . '" disabled>';
+                    echo '<input type="text" class="table-cell text-input" value="' . $rows->usersLastName . '" disabled>';
+                    echo '<input type="text" class="table-cell text-input" value="' . $rows->usersEmail . '" disabled>';
+                    echo '<input type="text" class="table-cell text-input" value="' . $rows->usersPassword . '" disabled>';
 
-                ?>
-                <tr>
-                    <td>ID: <?php echo $rows->usersId; ?></td>
-                    <td> Login: <?php echo $rows->usersLogin; ?></td>
-                    <td><?php echo $rows->usersFirstName; ?></td>
-                    <td><?php echo $rows->usersLastName; ?></td>
-                    <td>E-mail: <?php echo $rows->usersEmail; ?></td>
-                    <td>Hasło: <?php echo $rows->usersPassword; //todo mozna zrobic deszyfrowanie hasla, albo wgl to wywalic ?></td>
-                    <td>
-                        <form action="controllers/Admins.php" method="post">
-                            <input type="hidden" name="type" value="delete">
-                            <button type="submit" name="user_delete" value="<?php echo $rows->usersId; ?>">Delete
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-            <?php }
-        } else {
-            echo "Nothing";
+                    echo '<form class="task-remover" action="controllers/Admins.php" method="post">';
+                    echo '<input type="hidden" name="type" value="delete">';
+                    echo '<button class="delete-btn btn-hover" type="submit" name="user_delete" value="' . $rows->usersId . '">Usuń</button>';
+                    echo '</form>';
+                    echo '</li>';
+                }
+            }
+            else {
+                echo "Nie znaleziono żadnych wyników.";
+            }
+        }
+        else
+        {
+            echo "Nie znaleziono żadnych wyników.";
         }
     } ?>
-
-
-
-
 <!-- Pokaz wszystkich userow -->
 <?php
-include_once __DIR__ . '/show_users.php';
-include_once __DIR__ . '/logout.php';
-include_once  __DIR__ . '/footer.php';
+    include_once __DIR__ . '/show_users.php';
+    include_once __DIR__ . '/logout.php';
 ?>
-
 <!--Wglad w dane usera -->
 </div>
+<?php
+    include_once  __DIR__ . '/footer.php';
+?>

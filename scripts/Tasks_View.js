@@ -17,13 +17,13 @@ function sortList(ul, mode){
         }
         case("date"):
         {
-            cell = 3;
+            cell = 4;
             flag = sorterDateFlag;
             break;
         }
         case("type"):
         {
-            cell = 4;
+            cell = 6;
             flag = sorterTypeFlag;
             break; 
         }
@@ -94,7 +94,7 @@ document.getElementById("sorter-name").addEventListener("click", function() {
 });
 
 document.getElementById("sorter-date").addEventListener("click", function() {
-sortList(document.getElementById("tasks-list"), "date");
+    sortList(document.getElementById("tasks-list"), "date");
 });
 
 document.getElementById("sorter-type").addEventListener("click", function() {

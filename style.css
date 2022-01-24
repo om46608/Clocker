@@ -3,8 +3,8 @@ html, body{
 }
 
 .wrapper{
-    width: 80%;
-    margin-left: 10%;
+    width: 100%;
+    text-align: center;
 }
 h1.menu {
     color: #f0cb00;

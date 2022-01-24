@@ -36,7 +36,7 @@ if (!isset($_SESSION['usersId'])) {
 }
 ?>
 
-<!--<!--Footer-->-->
+<!--Footer-->
 <?php
 //include_once  __DIR__ . '/footer.php';
 //?>

@@ -2,7 +2,7 @@
 include_once __DIR__ . '/header.php';
 include_once __DIR__ . '/helpers/validate_inputs.php';
 ?>
-
+<link rel="stylesheet" href="styles/tasks_view.css">
 <form class="forms" method="post" action="controllers/Users.php">
 
     <input type="hidden" name="type" value="login">
@@ -19,7 +19,7 @@ include_once __DIR__ . '/helpers/validate_inputs.php';
     </label> <br>
     <?php checkInputs('login') ?>
 
-    <button type="submit" name="submit"> Zaloguj się!</button>
+    <button class="btn btn-hover"type="submit" name="submit"> Zaloguj się!</button>
 
 </form>
 <h3 style="padding-top: 30px; text-align:center;"> Nie masz jeszcze konta? <a href="register.php"> Zarejestruj się! </a>
