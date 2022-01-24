@@ -41,7 +41,7 @@ class Task
         VALUES (:taskName, :startTime, :endTime, :usersId, :projectName, :duration, :clientName)');
         $this->database->bind(':taskName', $task_fields[0]);
         $this->database->bind(':startTime', $task_fields[3]);
-        $this->database->bind(':endTime', $task_fields[4]);
+        $this->database->bind(':endTime', $task_fields[3]);
         $this->database->bind(':usersId', $_SESSION['usersId']);
         $this->database->bind(':projectName', $task_fields[1]);
         $this->database->bind(':duration', "00:00:00");
@@ -56,6 +56,17 @@ class Task
     public function removeTask($taskId)
     {
         $this->database->query('DELETE FROM tasks WHERE task_id = :taskId');
+        $this->database->bind(':taskId', $taskId);
+        if ($this->database->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function addTimeToTask($taskId, $taskTime) {
+        $this->database->query('UPDATE tasks SET duration = :taskTime WHERE task_id = :taskId');
+        $this->database->bind(':taskTime', $taskTime);
         $this->database->bind(':taskId', $taskId);
         if ($this->database->execute()) {
             return true;

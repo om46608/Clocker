@@ -12,6 +12,7 @@ class Users
     private $users_email;
     private $users_password;
     private $users_password_repeat;
+    private $firstLoadComplete = false;
 
     /**
      * @return mixed
@@ -432,14 +433,14 @@ class Users
         header('Location: ' . $newURL);
     }
 
-    public function addTask()
-    {echo '<input type="text" minlength="3" maxlength="7" class="text-input" placeholder="Nazwa projektu" value="' . $task->project_name . '" disabled>';
+    public function addTask() {
+        echo '<input type="text" minlength="3" maxlength="7" class="text-input" placeholder="Nazwa projektu" value="' . $task->project_name . '" disabled>';
         $task_fields = [
             $_POST['taskName'], //0
             $_POST['projectName'], //1
             $_POST['clientName'], //2
             $_POST['startDate'], //3
-            $_POST['endDate'], //4
+            $_POST['startDate'], //4
             $_SESSION['usersId'] //5
         ];
         foreach ($task_fields as $key => $item) {
@@ -477,6 +478,20 @@ class Users
             exit("Cos chyba poszlo nie tak");
         }
     }
+
+    public function addTimeToTask() {
+        $id = explode(":::", strval($_POST["taskTime"]))[0];
+        $timee = explode(":::", strval($_POST["taskTime"]))[1];
+
+        if ($this->task->addTimeToTask($id, $timee)) {
+            $_SESSION['tasks'] = $this->task->getTasks();
+            echo $_SESSION['tasks'];
+            $newURL = '../index.php?action=tasks';
+            header('Location: ' . $newURL);
+        } else {
+            exit("Cos chyba poszlo nie tak");
+        }
+    }
 }
 
 $user = new Users();
@@ -498,6 +513,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user->addTask();
     if ($_POST['type'] == 'removeTask')
         $user->removeTask();
+    if ($_POST['type'] == 'addTimeToDb')
+        $user->addTimeToTask();
 }
 
 if (isset($_SESSION['usersId'])) {

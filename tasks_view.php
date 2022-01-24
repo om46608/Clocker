@@ -11,6 +11,7 @@ include_once __DIR__ . '/helpers/validate_inputs.php';
 </head>
 
 <body>
+<script type="text/javascript" src="scripts/TimeTracker.js"></script>
     <h1 style="color:white; text-align:center;">Taski</h1>
     <form class="forms" method="post" action="controllers/Users.php">
         <input type="hidden" name="type" value="addTask">
@@ -26,9 +27,6 @@ include_once __DIR__ . '/helpers/validate_inputs.php';
         <label>Data rozpoczęcia
             <input type="date" name="startDate">
         </label>
-        <label>Data zakończenia
-            <input type="date" name="endDate">
-        </label>
         <?php checkInputs('task') ?>
         <button type="submit">Dodaj taska!</button>
     </form>
@@ -43,16 +41,25 @@ include_once __DIR__ . '/helpers/validate_inputs.php';
             {
             echo '<li id="' . $task->task_id . '">';
             echo '<input type="text" minlength="3" maxlength="255" class="text-input" placeholder="Nazwa projektu" value="' . $task->task_name . '" id="name" disabled>';
-            echo '<input type="text" class="text-input" value="' . $task->duration . '" disabled>';
-            echo '<button id="start-stop-button">Start/Stop</button>';
+            echo '<input type="text" class="tracker__task__time__new" id="tracker__task__time-' . $task->task_id . '" "class="text-input tracker__task__time-' . $task->task_id . '" value="' . $task->duration . '" disabled>';
+            echo '<button id="start-stop-button" onclick="startStopTask(' . $task->task_id . ')">Start/Stop</button>';
             echo '<input type="text" class="text-input" value="' . substr($task->end_time, 0, 10) . '" disabled>';
             echo '<input type="text" minlength="3" maxlength="255" class="text-input" placeholder="Nazwa projektu" value="' . $task->project_name . '" disabled>';
             echo '<input type="text" minlength="3" maxlength="255" class="text-input" placeholder="Nazwa klienta" value="' . $task->client_name . '" disabled>';
+
             echo '<form class="task-remover" method="post" action="controllers/Users.php">';
             echo '<input type="hidden" name="type" value="removeTask">';
             echo '<input type="hidden" name="taskId" value="' . $task->task_id .'">';
             echo '<button id="start-stop-button" type="submit">Usuń</button>';
             echo '</form>';
+
+
+                echo '<form id="addTimeToDb-' . $task->task_id . '" class="addTimeToDb" method="post" action="controllers/Users.php">';
+                echo '<input type="hidden" name="type" value="addTimeToDb">';
+                echo '<input  type="hidden" id="trackedTimeFormInput-' . $task->task_id . '" name="taskTime" value="0">';
+                echo '</form>';
+
+
             echo '</li>';
             }
         ?>

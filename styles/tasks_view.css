@@ -18,3 +18,9 @@
 .hidden{
     display: none;
 }
+
+.tracker__task__time__new {
+    width: 100px;
+    text-align: center;
+    color: white;
+}
