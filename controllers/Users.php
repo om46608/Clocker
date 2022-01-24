@@ -492,6 +492,20 @@ class Users
             exit("Cos chyba poszlo nie tak");
         }
     }
+
+    public function updateTaskName() {
+        $id = explode(":::", strval($_POST["updatedTaskName"]))[0];
+        $task_new_name = explode(":::", strval($_POST["updatedTaskName"]))[1];
+
+        if ($this->task->updateTaskName($id, $task_new_name)) {
+            $_SESSION['tasks'] = $this->task->getTasks();
+            echo $_SESSION['tasks'];
+            $newURL = '../index.php?action=tasks';
+            header('Location: ' . $newURL);
+        } else {
+            exit("Cos chyba poszlo nie tak");
+        }
+    }
 }
 
 $user = new Users();
@@ -515,6 +529,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user->removeTask();
     if ($_POST['type'] == 'addTimeToDb')
         $user->addTimeToTask();
+    if ($_POST['type'] == 'updateTaskName')
+        $user->updateTaskName();
 }
 
 if (isset($_SESSION['usersId'])) {

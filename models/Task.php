@@ -74,4 +74,15 @@ class Task
             return false;
         }
     }
+
+    public function updateTaskName($taskId, $taskName) {
+        $this->database->query('UPDATE tasks SET task_name = :taskName WHERE task_id = :taskId');
+        $this->database->bind(':taskName', $taskName);
+        $this->database->bind(':taskId', $taskId);
+        if ($this->database->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

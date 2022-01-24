@@ -74,3 +74,17 @@ function closeErrorModal() {
     let errorModalEl = document.getElementsByClassName('tracker-error-wrapper')[0];
     errorModalEl.style.display = 'none';
 }
+
+function updateTaskName(id) {
+    let taskNameInputFieldEl = document.querySelector('#task_name_input-' + id)
+    var task_name = taskNameInputFieldEl.value;
+
+    let updateTaskNameFormInput = document.querySelector("#updateTaskNameFormInput-" + id);
+    updateTaskNameFormInput.value = id + ":::" + task_name;
+
+    let updateTaskNameForm = document.querySelector("#updateTaskName-" + id);
+
+    if (task_name.length > 2) {
+        updateTaskNameForm.submit();
+    }
+}

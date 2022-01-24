@@ -40,7 +40,8 @@ include_once __DIR__ . '/helpers/validate_inputs.php';
             foreach ($_SESSION['tasks'] as $task)
             {
             echo '<li id="' . $task->task_id . '">';
-            echo '<input type="text" minlength="3" maxlength="255" class="text-input" placeholder="Nazwa projektu" value="' . $task->task_name . '" id="name" disabled>';
+            echo '<input type="text" id="task_name_input-' . $task->task_id . '" minlength="3" maxlength="255" class="task_name_input text-input" placeholder="Nazwa projektu" value="' . $task->task_name . '" id="name" >';
+            echo '<button id="start-stop-button" onclick="updateTaskName(' . $task->task_id . ')">&#10003;</button>';
             echo '<input type="text" class="tracker__task__time__new" id="tracker__task__time-' . $task->task_id . '" "class="text-input tracker__task__time-' . $task->task_id . '" value="' . $task->duration . '" disabled>';
             echo '<button id="start-stop-button" onclick="startStopTask(' . $task->task_id . ')">Start/Stop</button>';
             echo '<input type="text" class="text-input" value="' . substr($task->end_time, 0, 10) . '" disabled>';
@@ -54,11 +55,16 @@ include_once __DIR__ . '/helpers/validate_inputs.php';
             echo '</form>';
 
 
-                echo '<form id="addTimeToDb-' . $task->task_id . '" class="addTimeToDb" method="post" action="controllers/Users.php">';
-                echo '<input type="hidden" name="type" value="addTimeToDb">';
-                echo '<input  type="hidden" id="trackedTimeFormInput-' . $task->task_id . '" name="taskTime" value="0">';
-                echo '</form>';
+            echo '<form id="addTimeToDb-' . $task->task_id . '" class="addTimeToDb" method="post" action="controllers/Users.php">';
+            echo '<input type="hidden" name="type" value="addTimeToDb">';
+            echo '<input  type="hidden" id="trackedTimeFormInput-' . $task->task_id . '" name="taskTime" value="0">';
+            echo '</form>';
 
+
+            echo '<form id="updateTaskName-' . $task->task_id . '" class="addTimeToDb" method="post" action="controllers/Users.php">';
+            echo '<input type="hidden" name="type" value="updateTaskName">';
+            echo '<input  type="hidden" id="updateTaskNameFormInput-' . $task->task_id . '" name="updatedTaskName" value="0">';
+            echo '</form>';
 
             echo '</li>';
             }

@@ -24,3 +24,7 @@
     text-align: center;
     color: white;
 }
+
+.task_name_input {
+    background-color: gray;
+}
