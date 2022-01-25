@@ -12,6 +12,7 @@ $count_all = (array_shift($count_all[0]));
 $count_time = $tasks->getSumOfTaskTimes();
 $count_time = json_decode(json_encode($count_time), true);
 $count_time = (array_shift($count_time[0]));
+$count_time = round($count_time/3600);
 
 ?>
 <h2 id = "stats-for-everyone"> Mamy <b> <?php echo $count_time?> </b> zarejestrowanych godzin!  </h2>
