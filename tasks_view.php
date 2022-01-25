@@ -28,7 +28,7 @@ include_once __DIR__ . '/helpers/validate_inputs.php';
             <input type="date" name="startDate">
         </label>
         <?php checkInputs('task') ?>
-        <button type="submit">Dodaj taska!</button>
+        <button class='btn btn-hover' type="submit">Dodaj taska!</button>
     </form>
     <ul>
         <li class="filter">
@@ -41,9 +41,9 @@ include_once __DIR__ . '/helpers/validate_inputs.php';
             {
             echo '<li id="' . $task->task_id . '">';
             echo '<input type="text" id="task_name_input-' . $task->task_id . '" minlength="3" maxlength="255" class="task_name_input text-input" placeholder="Nazwa projektu" value="' . $task->task_name . '" id="name" >';
-            echo '<button id="start-stop-button" onclick="updateTaskName(' . $task->task_id . ')">&#10003;</button>';
+            echo '<button class="btn-hover" id="start-stop-button" onclick="updateTaskName(' . $task->task_id . ')">&#10003;</button>';
             echo '<input type="text" class="tracker__task__time__new" id="tracker__task__time-' . $task->task_id . '" "class="text-input tracker__task__time-' . $task->task_id . '" value="' . $task->duration . '" disabled>';
-            echo '<button id="start-stop-button" onclick="startStopTask(' . $task->task_id . ')">Start/Stop</button>';
+            echo '<button class="btn-hover" id="start-stop-button" onclick="startStopTask(' . $task->task_id . ')">Start/Stop</button>';
             echo '<input type="text" class="text-input" value="' . substr($task->end_time, 0, 10) . '" disabled>';
             echo '<input type="text" minlength="3" maxlength="255" class="text-input" placeholder="Nazwa projektu" value="' . $task->project_name . '" disabled>';
             echo '<input type="text" minlength="3" maxlength="255" class="text-input" placeholder="Nazwa klienta" value="' . $task->client_name . '" disabled>';
@@ -51,7 +51,14 @@ include_once __DIR__ . '/helpers/validate_inputs.php';
             echo '<form class="task-remover" method="post" action="controllers/Users.php">';
             echo '<input type="hidden" name="type" value="removeTask">';
             echo '<input type="hidden" name="taskId" value="' . $task->task_id .'">';
-            echo '<button id="start-stop-button" type="submit">Usuń</button>';
+            echo '<button class="btn-hover" id="start-stop-button" type="submit">Usuń</button>';
+            echo '</form>';
+
+
+            echo '<form class="task-remover" method="post" action="controllers/Users.php">';
+            echo '<input type="hidden" name="type" value="editTask">';
+            echo '<input type="hidden" name="taskId" value="' . $task->task_id .'">';
+            echo '<button class="btn-hover" id="start-stop-button" type="submit">Edytuj</button>';
             echo '</form>';
 
 
@@ -73,9 +80,9 @@ include_once __DIR__ . '/helpers/validate_inputs.php';
     </ul>
     <ul>
         <li class="sorter" id="sorter">
-            <button class="sorter-btn" id="sorter-name">Sortuj po nazwie</button>
-            <button class="sorter-btn" id="sorter-date">Sortuj po dacie</button>
-            <button class="sorter-btn" id="sorter-type">Sortuj po typie klienta</button>
+            <button class="sorter-btn btn btn-hover" id="sorter-name">Sortuj po nazwie</button>
+            <button class="sorter-btn btn btn-hover" id="sorter-date">Sortuj po dacie</button>
+            <button class="sorter-btn btn btn-hover" id="sorter-type">Sortuj po nazwie klienta</button>
         </li>
     </ul>
     <script src="scripts/Tasks_View.js"></script>

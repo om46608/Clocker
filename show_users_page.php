@@ -5,65 +5,42 @@ require_once __DIR__ . '/models/Admin.php';
 //todo dorobic css
 ?>
 
+<link rel="stylesheet" href="styles/tasks_view.css">
+<h1 style="color:white; text-align:center;">Dane użytkowników</h1>
+<ul id="tasks-list">
+    <li id="start-li">
+    <?php
+    echo '<input type="text" class="table-head text-input" value="ID" disabled>';
+    echo '<input type="text" class="table-head text-input" value="Login" disabled>';
+    echo '<input type="text" class="table-head text-input" value="Imię" disabled>';
+    echo '<input type="text" class="table-head text-input" value="Nazwisko" disabled>';
+    echo '<input type="text" class="table-head text-input" value="E-mail" disabled>';
+    echo '<input type="text" class="table-head text-input" value="Hasło" disabled>';
+    echo '<input type="text" class="table-head text-input" value="Usuń" disabled>';
+    ?>
+    </li>
+    <?php
 
-<div class="container">
-    <table class="usersTable">
-        <thead style="border: 1px solid black">
-            <tr>
-                <th>UserId</th>
-                <th>UserLogin</th>
-                <th>UserFirsName</th>
-                <th>UserLastName</th>
-                <th>UserEmail</th>
-                <th>UserPassword</th>
+    $model = new Admin();
+    $data = $model->showAllUsers();
+        foreach($data as $rows) {
+        echo '<li id="' . $rows->usersId . '">';
+        echo '<input type="text" class="table-cell text-input" value="' . $rows->usersId . '" disabled>';
+        echo '<input type="text" class="table-cell text-input" value="' . $rows->usersLogin . '" disabled>';
+        echo '<input type="text" class="table-cell text-input" value="' . $rows->usersFirstName . '" disabled>';
+        echo '<input type="text" class="table-cell text-input" value="' . $rows->usersLastName . '" disabled>';
+        echo '<input type="text" class="table-cell text-input" value="' . $rows->usersEmail . '" disabled>';
+        echo '<input type="text" class="table-cell text-input" value="' . $rows->usersPassword . '" disabled>';
 
-
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php
-
-        $model = new Admin();
-        $data = $model->showAllUsers();
-            foreach($data as $rows) {
-
-
-        ?>
-                <tr>
-                    <td><?php echo $rows->usersId;?></td>
-                    <td><?php echo $rows->usersLogin;?></td>
-                    <td><?php echo $rows->usersFirstName;?></td>
-                    <td><?php echo $rows->usersLastName; ?></td>
-                    <td><?php echo $rows->usersEmail; ?></td>
-                    <td><?php echo $rows->usersPassword;?></td>
-
-
-                    <td>
-                        <form action="controllers/Admins.php" method="post">
-                            <input type="hidden" name="type" value="delete">
-                            <button type="submit" name="user_delete" value="<?php echo $rows->usersId;?>">Delete</button>
-                        </form>
-                    </td>
-
-                </tr>
-
-        <?php    } ?>
-
-            <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-
-            </tr>
-        </tbody>
-    </table>
-</div>
+        echo '<form class="task-remover" action="controllers/Admins.php" method="post">';
+        echo '<input type="hidden" name="type" value="delete">';
+        echo '<button class="delete-btn btn-hover" type="submit" name="user_delete" value="' . $rows->usersId . '">Usuń</button>';
+        echo '</form>';
+        
+        echo '</li>';
+        }
+    ?>
+</ul>
 <?php
 include_once __DIR__ .'/footer.php';
 ?>

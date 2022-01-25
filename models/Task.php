@@ -75,10 +75,39 @@ class Task
         }
     }
 
+    public function getTask($taskId)
+    {
+        $this->database->query('SELECT * FROM tasks WHERE task_id = :taskId');
+        $this->database->bind(':taskId', $taskId);
+        $row = $this->database->getOneResult();
+        if ($this->database->rowCount() > 0) {
+            return $row;
+        } else {
+            return false;
+        }
+    }
     public function updateTaskName($taskId, $taskName) {
         $this->database->query('UPDATE tasks SET task_name = :taskName WHERE task_id = :taskId');
         $this->database->bind(':taskName', $taskName);
         $this->database->bind(':taskId', $taskId);
+        if ($this->database->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function updateTask($task_fields){
+        $this->database->query('UPDATE tasks SET task_name=:taskName, start_time=:startTime, end_time=:endTime, usersId=:usersId, 
+        project_name=:projectName, client_name=:clientName WHERE task_id=:taskId');
+        $this->database->bind(':taskName', $task_fields[1]);
+        $this->database->bind(':startTime', $task_fields[4]);
+        $this->database->bind(':endTime', $task_fields[4]);
+        $this->database->bind(':usersId', $task_fields[5]);
+        $this->database->bind(':projectName', $task_fields[2]);
+        $this->database->bind(":clientName", $task_fields[3]);
+        $this->database->bind(":taskId", $task_fields[0]);
+
         if ($this->database->execute()) {
             return true;
         } else {

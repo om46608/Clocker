@@ -27,6 +27,8 @@ class Admin
 
     //zrobic zeby nie mogl szukac admina/ szukanie po loginie lub emailu
     public function showSpecificUser($userSearchInput){
+        if($userSearchInput == "")
+            return false;
         $this->database->query('SELECT usersId, usersLogin, usersFirstName, usersLastName, usersEmail, usersPassword FROM users WHERE usersLogin = :userSearchInput OR usersEmail = :userSearchInput');
         $this->database->bind(':userSearchInput', $userSearchInput);
 

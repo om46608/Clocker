@@ -2,6 +2,7 @@
 include_once __DIR__ . '/header.php';
 include_once __DIR__ . '/helpers/validate_inputs.php';
 ?>
+<link rel="stylesheet" href="styles/tasks_view.css">
 <h1 style="color:white; text-align:center;">Edytuj profil!</h1>
 <form class="forms" method="post" action="controllers/Users.php">
     <input type="hidden" name="type" value="update">
@@ -35,7 +36,7 @@ include_once __DIR__ . '/helpers/validate_inputs.php';
         <input type="password" name="repeatUsersPassword" maxlength="25" placeholder="Wpisz ponownie swoje haslo">
     </label> <br>
     <?php checkInputs('update') ?>
-    <button type="submit" name="submit"> Zaktualizuj profil!</button>
+    <button class="btn btn-hover"type="submit" name="submit"> Zaktualizuj profil!</button>
 </form>
 <?php
 include_once __DIR__ . '/footer.php'
