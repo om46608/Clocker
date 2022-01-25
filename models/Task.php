@@ -99,7 +99,7 @@ class Task
 
     public function updateTask($task_fields){
         $this->database->query('UPDATE tasks SET task_name=:taskName, start_time=:startTime, end_time=:endTime, usersId=:usersId, 
-        project_name=:projectName, client_name=:clientName WHERE task_id=:taskId'); 
+        project_name=:projectName, client_name=:clientName WHERE task_id=:taskId');
         $this->database->bind(':taskName', $task_fields[1]);
         $this->database->bind(':startTime', $task_fields[4]);
         $this->database->bind(':endTime', $task_fields[4]);
@@ -113,5 +113,10 @@ class Task
         } else {
             return false;
         }
+    }
+    public function getSumOfTaskTimes(){
+        $this->database->query('SELECT (SUM(TIME_TO_SEC(duration))) FROM tasks;');
+        $this->database->execute();
+        return $this->database->getAllResults();
     }
 }
