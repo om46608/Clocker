@@ -103,5 +103,16 @@ class User
         $this->database->execute();
         return $this->database->getAllResults();
     }
+    public function getCsvData($userId){
+        $this->database->query('SELECT task_id, task_name, start_time, end_time, project_name, duration, client_name FROM tasks WHERE usersId = '.$userId);
+        $this->database->execute();
+
+
+        return $this->database->getAllResults();
+
+
+
+
+    }
 
 }

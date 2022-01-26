@@ -2,4 +2,5 @@
 <?php
 include_once __DIR__ . '/tasks_view.php';
 include_once __DIR__ . '/logout.php';
+include_once __DIR__ . '/download_csv_btn.php';
 ?>

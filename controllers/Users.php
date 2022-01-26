@@ -556,6 +556,40 @@ class Users
             exit("Cos chyba poszlo nie tak");
         }
     }
+    public function download_csv(){
+        $userId = $_SESSION['usersId'];
+        $result=$this->user->getCsvData($userId);
+
+        $filename = 'raport.csv';
+        $fp=fopen('php://output','w');
+        //ob_clean();
+        $headers=array(
+            "TaskId",
+            "TaskName",
+            "StartTime",
+            "EndTime",
+            "ProjectName",
+            "Duration",
+            "ClientName"
+        );
+        header("Content-Description: File Transfer");
+        header('Content-Type: application/csv');
+        header('Content-Disposition: attachment; filename="'.$filename.'";');
+        $delimiter = ",";
+
+        fputcsv($fp,$headers,$delimiter);
+
+        foreach ($result as $row){
+            $content = array($row->task_id,$row->task_name,$row->start_time,$row->end_time,$row->project_name,$row->duration,$row->client_name);
+
+            fputcsv($fp,$content,$delimiter);
+        }
+
+
+        fclose($fp);
+
+        exit;
+    }
 }
 
 $user = new Users();
@@ -585,6 +619,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user->editTask();
     if ($_POST['type'] == 'updateTask')
         $user->updateTask();
+    if ($_POST['type']=='dwn_csv'){
+        $user->download_csv();
+    }
 }
 
 if (isset($_SESSION['usersId'])) {
