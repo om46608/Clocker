@@ -7,7 +7,7 @@
         <li>
             <button class="menu" onclick="window.location.href='index.php?action=register';">Zarejestruj się
         </li>
-        <li><a href="time_tracker.php">
+        <li><a href="./index.php?action=guest">
                 <button class="menu">Wypróbuj jako gość</button>
             </a></li>
         <form id="Guest" method="post" action="controllers/Users.php">

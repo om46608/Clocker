@@ -1,4 +1,4 @@
-<script type="text/javascript" src="scripts/TimeTracker.js"></script>
+<script type="text/javascript" src="scripts/TimeTrackerGuest.js"></script>
 <link rel="stylesheet" type="text/css" href="styles/time_tracker.css" />
 <link rel="stylesheet" href="style.css"/>
 <?php
