@@ -385,7 +385,7 @@ input{
     padding-right: 2rem;
     width: 50ch;
 }
-#filter.task-filter{
+.task-filter{
     background-color: rgba(61, 61, 61, 0.8);
     color: #c5ad44;
     border: 2px solid black;

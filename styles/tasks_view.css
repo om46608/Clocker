@@ -84,3 +84,16 @@
     background-color: rgba(239, 239, 239, 0.3);
     opacity: 90%;
 }
+
+.d-none {
+    display: none !important;
+}
+
+.adv-filters {
+    width: 100%;
+}
+
+.adv-filters .filter {
+    width: 80%;
+    margin: 10px auto;
+}

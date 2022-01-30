@@ -30,9 +30,15 @@ include_once __DIR__ . '/helpers/validate_inputs.php';
         <?php checkInputs('task') ?>
         <button class='btn btn-hover' type="submit">Dodaj taska!</button>
     </form>
-    <ul>
-        <li class="filter">
-            <input type="text" minlength="3" class="task-filter" placeholder="Filtruj po nazwie projektu..." id="filter">
+    <ul class="adv-filters">
+        <li class="filter d-none">
+            <input type="text" minlength="3" class="task-filter" placeholder="Filtruj po nazwie taska..." id="filter-name">
+        </li>
+        <li class="filter d-none">
+            <input type="text" minlength="3" class="task-filter" placeholder="Filtruj po nazwie projektu..." id="filter-project">
+        </li>
+        <li class="filter d-none">
+            <input type="text" minlength="3" class="task-filter" placeholder="Filtruj po nazwie klienta..." id="filter-client">
         </li>
 
         <ul id="tasks-list">
@@ -80,9 +86,10 @@ include_once __DIR__ . '/helpers/validate_inputs.php';
     </ul>
     <ul>
         <li class="sorter" id="sorter">
-            <button class="sorter-btn btn btn-hover" id="sorter-name">Sortuj po nazwie</button>
-            <button class="sorter-btn btn btn-hover" id="sorter-date">Sortuj po dacie</button>
-            <button class="sorter-btn btn btn-hover" id="sorter-type">Sortuj po nazwie klienta</button>
+            <button class="sorter-btn btn btn-hover" id="sorter-name">Sortuj wg nazwy</button>
+            <button class="sorter-btn btn btn-hover" id="sorter-date">Sortuj wg daty</button>
+            <button class="sorter-btn btn btn-hover" id="sorter-type">Sortuj wg nazwy klienta</button>
+            <button class="sorter-btn btn btn-hover" id="sorter-type" onclick="advancedSort()">Sortowanie zaawansowane...</button>
         </li>
     </ul>
     <script src="scripts/Tasks_View.js"></script>
