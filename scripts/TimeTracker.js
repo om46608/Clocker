@@ -1,6 +1,7 @@
 var startTime = 0;
 var stopTime = 0;
 var isActive = false;
+var isAdvancedSort = true;
 
 function startStopTask(id = 0) {
     countTime(id);
@@ -86,5 +87,20 @@ function updateTaskName(id) {
 
     if (task_name.length > 2) {
         updateTaskNameForm.submit();
+    }
+}
+
+function advancedSort() {
+    let filters = document.querySelectorAll(".filter");
+
+    if (filters) {
+        isAdvancedSort = !isAdvancedSort;
+      filters.forEach((filter) => {
+         if (isAdvancedSort) {
+             filter.classList.add("d-none");
+         } else {
+             filter.classList.remove("d-none");
+         }
+      });
     }
 }

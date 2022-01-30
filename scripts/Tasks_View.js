@@ -66,7 +66,11 @@ function sortList(ul, mode){
     ul.parentNode.replaceChild(new_ul, ul);
 }
 
-function filterList(ul, filter){
+//childNodes[0] - nazwa taska
+//childNodes[5] - nazwa projektu
+//childNodes[6] - nazwa klienta
+
+function filterList(ul, filter, type = 0) {
     var new_ul = ul.cloneNode(false);
     var lis = [];
     for(var i = 0;i < ul.childNodes.length; i++){
@@ -74,8 +78,7 @@ function filterList(ul, filter){
             lis.push(ul.childNodes[i]);
     }
     for(var i = 0; i < lis.length; i++)
-    {
-        if(lis[i].childNodes[0].value.indexOf(filter) == -1)
+    {if(lis[i].childNodes[type].value.indexOf(filter) == -1)
             lis[i].classList.add("hidden");
         else
             lis[i].classList.remove("hidden");
@@ -101,6 +104,17 @@ document.getElementById("sorter-type").addEventListener("click", function() {
     sortList(document.getElementById("tasks-list"), "type");
 });
 
-document.getElementById("filter").addEventListener("input", function(){
-    filterList(document.getElementById("tasks-list"), this.value);
+document.getElementById("filter-name").addEventListener("input", function(){
+    console.log('name');
+    filterList(document.getElementById("tasks-list"), this.value, 0);
+})
+
+document.getElementById("filter-client").addEventListener("input", function(){
+    console.log('client');
+    filterList(document.getElementById("tasks-list"), this.value, 6);
+})
+
+document.getElementById("filter-project").addEventListener("input", function(){
+    console.log('project');
+    filterList(document.getElementById("tasks-list"), this.value, 5);
 })
